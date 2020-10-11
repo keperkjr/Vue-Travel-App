@@ -45,7 +45,11 @@ export default {
     },
     getNavigationPath(destination) {
       return {
-        name: 'DestinationDetails', params: {id: destination.id}
+        name: 'DestinationDetails',
+         params: {
+           id: destination.id, 
+           slug: destination.slug
+          }
       };
     }
   }

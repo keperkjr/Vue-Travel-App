@@ -17,7 +17,7 @@
                 :key="destination.name"
                 class="links"
             >
-            <router-link :to="{ name: 'DestinationDetails', params: {id: destination.id} }">
+            <router-link :to="getNavigationPath(destination)">
                 {{destination.name}}
             </router-link>
             </li>
@@ -34,6 +34,17 @@ export default {
             destinationId: this.$route.params.id,
             destinations: store.destinations,       
         }
+    },
+    methods: {
+        getNavigationPath(destination) {
+            return {
+                name: 'DestinationDetails',
+                params: {
+                id: destination.id, 
+                slug: destination.slug
+                }
+            };
+        }        
     }
 }
 </script>

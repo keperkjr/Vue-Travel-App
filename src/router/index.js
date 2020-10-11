@@ -16,9 +16,16 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
+    props: true,
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
+  {
+    path: "/details/:slug",
+    name: "DestinationDetails",
+    props: true,
+    component: () => import(/* webpackChunkName: "DestinationDetails" */ "../views/DestinationDetails")
+  },     
   // {
   //   path: "/brazil",
   //   name: "brazil",
@@ -38,15 +45,11 @@ const routes = [
   //   path: "/panama",
   //   name: "panama",
   //   component: () => import(/* webpackChunkName: "panama" */ "../views/Panama")
-  // },
-  {
-    path: "/details/:id",
-    name: "DestinationDetails",
-    component: () => import(/* webpackChunkName: "DestinationDetails" */ "../views/DestinationDetails")
-  }    
+  // }, 
 ];
 
 const router = new VueRouter({
+  mode: "history",
   linkExactActiveClass: "vue-school-active-class",
   routes
 });
