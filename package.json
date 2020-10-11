@@ -39,7 +39,8 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "no-debugger": 1
+      "no-debugger": 1,
+      "no-unused-vars": "off" 
    }
   },
   "browserslist": [

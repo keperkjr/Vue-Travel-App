@@ -5,29 +5,28 @@
     </h1>
 
     <div class="destinations">
-      <div 
+      <section 
         v-for="destination in destinations"
         :key="destination.name"
       >
-        <router-link :to="destination.slug" >
+        <router-link :to="{ name: 'DestinationDetails', params: {id: destination.id} }" >
           <h2>{{destination.name}}</h2>
         </router-link>
 
         <figure>
-          <router-link :to="destination.name">
+          <router-link :to="{ name: 'DestinationDetails', params: {id: destination.id} }">
             <img :src="getImgPath(destination.image)"
               :alt="destination.name"
             >
           </router-link>
         </figure>
-      </div>
+      </section>
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue";
 import store from "@/store.js"
 
 export default {
