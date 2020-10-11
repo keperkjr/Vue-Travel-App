@@ -9,12 +9,12 @@
         v-for="destination in destinations"
         :key="destination.name"
       >
-        <router-link :to="{ name: 'DestinationDetails', params: {id: destination.id} }" >
+        <router-link :to="getNavigationPath(destination)" >
           <h2>{{destination.name}}</h2>
         </router-link>
 
         <figure>
-          <router-link :to="{ name: 'DestinationDetails', params: {id: destination.id} }">
+          <router-link :to="getNavigationPath(destination)">
             <img :src="getImgPath(destination.image)"
               :alt="destination.name"
             >
@@ -42,6 +42,11 @@ export default {
     getImgPath(image) {
       let path = require(`@/assets/${image}`);
       return path;
+    },
+    getNavigationPath(destination) {
+      return {
+        name: 'DestinationDetails', params: {id: destination.id}
+      };
     }
   }
 };
@@ -62,4 +67,12 @@ img {
   justify-content: space-between;
 }
 
+a {
+  color: lightseagreen;
+  text-decoration: none;
+}
+
+a:visited, a:hover {
+  text-decoration: underline;
+}
 </style>
