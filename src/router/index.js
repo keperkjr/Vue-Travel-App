@@ -21,10 +21,18 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
-    path: "/details/:slug",
+    path: "/destination/:slug",
     name: "DestinationDetails",
     props: true,
-    component: () => import(/* webpackChunkName: "DestinationDetails" */ "../views/DestinationDetails")
+    component: () => import(/* webpackChunkName: "DestinationDetails" */ "../views/DestinationDetails"),
+    children: [
+      {
+        path: ":experienceSlug",
+        name: "experienceDetails",
+        props: true,
+        component: () => import(/*webpackChunkName: "ExperienceDetails"*/ "../views/ExperienceDetails")
+      }
+    ],
   },     
   // {
   //   path: "/brazil",
@@ -51,7 +59,16 @@ const routes = [
 const router = new VueRouter({
   mode: "history",
   linkExactActiveClass: "vue-school-active-class",
-  routes
+  routes,
+  scrollBehavior: function(to, from, savedPosition) {
+      if (savedPosition) {
+        return savedPosition;
+      } else if (to.hash) {
+        return document.querySelector(to.hash).scrollIntoView({ behavior: 'smooth' });
+      } else {
+          return { x: 0, y: 0 }
+      }
+  },  
 });
 
 export default router;

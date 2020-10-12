@@ -1,11 +1,5 @@
 <template>
     <nav id="nav">
-        <!-- <router-link to="/">Home</router-link> |
-        <router-link to="/brazil">Brazil</router-link> |
-        <router-link to="/panama">Panama</router-link> |
-        <router-link to="/hawaii">Hawaii</router-link> |
-        <router-link to="/jamaica">Jamaica</router-link> | -->
-
         <p class="logo">The Vue School Travel App</p>
         <ul class="nav-links">
             <li class="links">
@@ -26,7 +20,7 @@
 </template>
 
 <script>
-import store from "@/store"
+import store from "@/store.js"
 
 export default {
     data() {
@@ -40,8 +34,8 @@ export default {
             return {
                 name: 'DestinationDetails',
                 params: {
-                id: destination.id, 
-                slug: destination.slug
+                    id: destination.id, 
+                    slug: destination.slug
                 }
             };
         }        
