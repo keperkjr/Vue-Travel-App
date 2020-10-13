@@ -100,14 +100,14 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth) ) {
+  let isLoggedIn = (store.user != null);
+  if (!isLoggedIn 
+    && to.matched.some(record => record.meta.requiresAuth) ) {
     // needs to login
-    if (!store.user) {
-      next({
-        name: "login"
-      });
-      return false;
-    }
+    next({
+      name: "login"
+    });
+    return false;
   } 
   next();
 });
