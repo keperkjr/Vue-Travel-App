@@ -25,13 +25,13 @@ const routes = [
     path: "/destination/:slug",
     name: "DestinationDetails",
     props: true,
-    component: () => import(/* webpackChunkName: "DestinationDetails" */ "../views/DestinationDetails"),
+    component: () => import(/* webpackChunkName: "DestinationDetails" */ "../views/DestinationDetails.vue"),
     children: [
       {
         path: ":experienceSlug",
         name: "experienceDetails",
         props: true,
-        component: () => import(/* webpackChunkName: "ExperienceDetails" */ "../views/ExperienceDetails")
+        component: () => import(/* webpackChunkName: "ExperienceDetails" */ "../views/ExperienceDetails.vue")
       },
     ],
     beforeEnter: (to, from, next) => {
@@ -46,10 +46,21 @@ const routes = [
     }
   },
   {
+    path: "/user",
+    name: "user",
+    component: () => import(/* webpackChunkName: "user" */ "../views/User.vue"),
+    meta: {requiresAuth: true}
+  },  
+  {
+    path: "/login",
+    name: "login",
+    component: () => import(/* webpackChunkName: "login" */ "../views/Login.vue")
+  },   
+  {
     path: "/404",
     alias: "*",
     name: "notFound",
-    component: () => import(/* webpackChunkName: "NotFound" */ "../views/NotFound")    
+    component: () => import(/* webpackChunkName: "NotFound" */ "../views/NotFound.vue")    
   }     
   // {
   //   path: "/brazil",
@@ -86,6 +97,19 @@ const router = new VueRouter({
           return { x: 0, y: 0 }
       }
   },  
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth) ) {
+    // needs to login
+    if (!store.user) {
+      next({
+        name: "login"
+      });
+      return false;
+    }
+  } 
+  next();
 });
 
 export default router;
