@@ -4,6 +4,15 @@ import router from "./router";
 
 Vue.config.productionTip = false;
 
+Vue.mixin({
+  methods: {
+    logOut(store) {
+      store.user = null;
+      this.$router.push("/");
+    }
+  }
+})
+
 new Vue({
   router,
   render: h => h(App)

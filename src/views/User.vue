@@ -6,7 +6,7 @@
                 Invoices
             </router-link>
         </p>
-        <button @click="logOut" class="btn">Log Out</button>
+        <button @click="_logOut" class="btn">Log Out</button>
     </div>
 </template>
 
@@ -20,9 +20,10 @@ export default {
         }
     },
     methods: {
-        logOut() {
-            store.user = null;
-            this.$router.push("/");
+        _logOut() {
+            //store.user = null;
+            //this.$router.push("/");
+            this.logOut(store);
         }
     }
 }
