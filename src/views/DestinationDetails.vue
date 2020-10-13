@@ -87,6 +87,10 @@ img {
     max-height: 400px;
 }
 
+.experiences {
+    padding: 40px 0;
+}
+
 .destination-details {
     display: flex;
     justify-content: space-between;
