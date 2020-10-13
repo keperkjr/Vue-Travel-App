@@ -55,12 +55,18 @@ const routes = [
     path: "/login",
     name: "login",
     component: () => import(/* webpackChunkName: "login" */ "../views/Login.vue")
-  },   
+  },  
+  {
+    path: "/invoices",
+    name: "invoices",
+    component: () => import(/* webpackChunkName: "Invouces" */ "../views/Invoices.vue"),
+    meta: {requiresAuth: true}    
+  },    
   {
     path: "/404",
     alias: "*",
     name: "notFound",
-    component: () => import(/* webpackChunkName: "NotFound" */ "../views/NotFound.vue")    
+    component: () => import(/* webpackChunkName: "NotFound" */ "../views/NotFound.vue")       
   }     
   // {
   //   path: "/brazil",
@@ -105,7 +111,8 @@ router.beforeEach((to, from, next) => {
     && to.matched.some(record => record.meta.requiresAuth) ) {
     // needs to login
     next({
-      name: "login"
+      name: "login",
+      query: {redirect: to.fullPath}
     });
     return false;
   } 
