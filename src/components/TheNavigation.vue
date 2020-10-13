@@ -3,7 +3,7 @@
         <p class="logo">The Vue School Travel App</p>
         <ul class="nav-links">
             <li class="links">
-                <router-link to="/">
+                <router-link to="/" exact>
                     Home
                 </router-link>
             </li>
@@ -66,6 +66,7 @@ export default {
 }
 
 #nav a.router-link-exact-active,
+#nav a.router-link-active,
 #nav a.vue-school-active-class {
   color: #42b983;
 }
